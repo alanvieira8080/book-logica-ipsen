@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="js/livrojs.png">
+    <title>Document</title>
+    <style>
+        img {
+            float: left;
+            height: 300px;
+            width: 300px;
+        }
+        h1 {
+            border-bottom-style: inset;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/ex4_6.jpg" alt="Caixa Eletrônico">
+    <h1>PRograma Caixa Eletrônico</h1>
+    <form action="">
+        <p>Valor do Saque R$: <input type="number" id="inNumero" required></p>
+        <input type="submit" value="Exibir Notas Para Saque">
+        <input type="reset" value="Limpar Campos">
+    </form>
+    <h3 id="out1"></h3>
+    <h3 id="out2"></h3>
+    <h3 id="out3"></h3>
+    <script>
+        const form = document.querySelector("form")
+        const out1 = document.querySelector("#out1")
+        const out2 = document.querySelector("#out2")
+        const out3 = document.querySelector("#out3")
+        
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+            out1.innerText = ""
+            out2.innerText = ""
+            out3.innerText = ""
+
+            let valor = Number(form.inNumero.value)
+
+            let notas100
+            let notas50
+            let notas10
+
+            if (valor >= 100) {
+                notas100 = Math.floor(valor / 100)
+                valor = valor % 100
+            }
+            
+            if (valor >= 50) {
+                notas50 = Math.floor(valor / 50)
+                valor = valor % 50
+            }
+
+            notas10 = Math.floor(valor / 10)
+            valor = valor % 10
+
+            if (valor != 0) {
+                out1.innerText = `Esse valor não é válido para as notas disponíveis!`
+            } else {
+                out1.innerText = `Notas de R$ 100: ${notas100}`
+                out2.innerText = `Notas de R$ 50: ${notas50}`
+                out3.innerText = `Notas de R$ 10: ${notas10}`
+            }
+        })
+    </script>
+</body>
+</html>

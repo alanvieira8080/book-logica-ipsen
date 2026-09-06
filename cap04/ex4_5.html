@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="js/livrojs.png">
+    <title>Document</title>
+    <style>
+        img {
+            float: left;
+            height: 300px;
+            width: 300px;
+        }
+        h1 {
+            border-bottom-style: inset;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/ex4_5.jpg" alt="Raiz Quadrada">
+    <h1>Programa Raiz Quadrada</h1>
+    <form action="">
+        <p>Número: <input type="number" id="inNumero" required></p>
+        <input type="submit" value="Exibir Raiz Quadrada">
+    </form>
+    <h3></h3>
+    <script>
+        const form = document.querySelector("form")
+        const resp = document.querySelector("h3")
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const numero = Number(form.inNumero.value)
+
+            const resultado = Math.sqrt(numero)
+            
+            if (Number.isInteger(numero)) {
+                resp.innerText = `Raiz: ${resultado}`
+            } else {
+                resp.innerText = `Não há raiz exata para ${numero}`
+            }
+
+        })
+    </script>
+</body>
+</html>

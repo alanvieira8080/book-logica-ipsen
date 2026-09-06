@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="js/livrojs.png">
+    <title>Document</title>
+    <style>
+        img {
+            float: left;
+            height: 300px;
+            width: 300px;
+        }
+        h1 {
+            border-bottom-style: inset;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/ex4_4.jpg" alt="Globo Terrestre">
+    <h1>Programa de Fuso Horário</h1>
+    <form action="">
+        <p>Hora no Brasil: <input type="number" id="inHora" min="0" max="23.59" step="0.01" required></p>
+        <input type="submit" value="Exibir Hora na França">
+    </form>
+    <h3></h3>
+    <script>
+        const form = document.querySelector("form")
+        const resp = document.querySelector("h3")
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const hora = Number(form.inHora.value)
+
+            let horaFinal = hora + 5
+
+            if (horaFinal > 24) {
+                horaFinal = horaFinal - 24
+            }
+
+            resp.innerText = `Hora na França: ${horaFinal.toFixed(2)}`
+        })
+    </script>
+</body>
+</html>

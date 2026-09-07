@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="js/livrojs.png" />
+    <title>Document</title>
+    <style>
+      img {
+        float: left;
+        height: 300px;
+        width: 300px;
+      }
+      h1 {
+        border-bottom-style: inset;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="img/exerc.jpg" alt="Imagem de Exercício" />
+    <h1>Programa Lados de um Triangulo</h1>
+    <form>
+      <p>Lado A: <input type="number" id="inLadoA" /></p>
+      <p>Lado B: <input type="number" id="inLadoB" /></p>
+      <p>Lado C: <input type="number" id="inLadoC" /></p>
+      <input type="submit" value="Verificar Lados" />
+    </form>
+    <h3 id="out1"></h3>
+    <h3 id="out2"></h3>
+    <script>
+      const form = document.querySelector("form");
+      const resp1 = document.querySelector("#out1");
+      const resp2 = document.querySelector("#out2");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const ladoA = Number(form.inLadoA.value);
+        const ladoB = Number(form.inLadoB.value);
+        const ladoC = Number(form.inLadoC.value);
+
+        if (
+          ladoA > ladoB + ladoC ||
+          ladoB > ladoA + ladoC ||
+          ladoC > ladoA + ladoB
+        ) {
+          resp1.innerText = "Lados não podem formar um triangulo!";
+          return;
+        }
+
+        resp1.innerText = "Lados podem formar um triangulo!";
+
+        if (ladoA == ladoB && ladoB == ladoC) {
+          resp2.innerText = "Tipo: Equilatero";
+        } else if (ladoA == ladoB || ladoA == ladoC || ladoB == ladoC) {
+          resp2.innerText = "Tipo: Isosceles";
+        } else {
+          resp2.innerText = "Tipo: Escaleno";
+        }
+      });
+    </script>
+  </body>
+</html>

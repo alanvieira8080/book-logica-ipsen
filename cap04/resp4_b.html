@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="js/livrojs.png">
+    <title>Document</title>
+    <style>
+    img {
+    float: left;
+    height: 300px;
+    width: 300px;
+    }
+    h1 {
+    border-bottom-style: inset;
+    }
+    </style>
+  </head>
+  <body>
+    <img src="img/exerc.jpg" alt="Imagem de Exercício">
+    <h1>Programa Verifica Velocidade</h1>
+    <form>
+      <p>Velocidade Permitida: <input type="number" id="inVelocidadePermitida"></p>
+      <p>Velocidade do Condutor: <input type="number" id="inVelocidadeCondutor"></p>
+      <input type="submit" value="Verificar">
+    </form>
+    <h3></h3>
+    <script>
+      const form = document.querySelector("form")
+      const resp = document.querySelector("h3")
+      
+      form.addEventListener("submit", (e) => {
+        e.preventDefault()
+        if (Number(form.inVelocidadeCondutor.value) <= Number(form.inVelocidadePermitida.value)) {
+          resp.innerText = "Sem multa!"
+        } else {
+          if (Number(form.inVelocidadeCondutor.value) > Number(form.inVelocidadePermitida.value)*1.2) {
+            resp.innerText = "Multa grave!"
+          } else {
+            resp.innerText = "Multa leve!"
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

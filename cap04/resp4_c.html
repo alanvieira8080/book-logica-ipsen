@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="js/livrojs.png" />
+    <title>Document</title>
+    <style>
+      img {
+        float: left;
+        height: 300px;
+        width: 300px;
+      }
+      h1 {
+        border-bottom-style: inset;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="img/exerc.jpg" alt="Imagem de Exercício" />
+    <h1>Programa Parquímetro</h1>
+    <form>
+      <p>Valor R$: <input type="number" id="inValor" /></p>
+      <input type="submit" value="Confirmar Depósito" />
+    </form>
+    <h3 id="out1"></h3>
+    <h3 id="out2"></h3>
+    <script>
+      const form = document.querySelector("form");
+      const resp1 = document.querySelector("#out1");
+      const resp2 = document.querySelector("#out2");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const valor = Number(form.inValor.value);
+
+        if (valor < 1) {
+          alert("Valor Insuficiente!");
+          form.inValor.focus();
+          return;
+        }
+
+        let tempo;
+        let troco;
+        if (valor > 3) {
+          tempo = Math.floor(valor / 3) * 120;
+          troco = valor % 3;
+        } else if (valor > 1.75) {
+          tempo = Math.floor(valor / 1.75) * 60;
+          troco = valor % 1.75;
+        } else {
+          tempo = Math.floor(valor) * 30;
+          troco = valor % 1;
+        }
+
+        resp1.innerText = `Tempo: ${tempo} min`;
+        resp2.innerText = troco != 0 ? `Troco R$: ${troco.toFixed(2)}` : "";
+      });
+    </script>
+  </body>
+</html>

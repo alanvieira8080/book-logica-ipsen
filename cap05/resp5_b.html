@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="js/favicon.png" />
+    <title>Document</title>
+    <style>
+      img.normal {
+        float: left;
+        height: 300px;
+        width: 300px;
+      }
+      img.alta {
+        float: left;
+        height: 420px;
+        width: 300px;
+      }
+      h1 {
+        border-bottom-style: inset;
+      }
+      pre {
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="img/image.jpg" alt="Imagem de Ilustração" class="normal" />
+    <h1>Programa Criação de Chinchilas</h1>
+    <form action="">
+      <p>Nº de Chinchilas: <input type="number" id="inChinchilas" min="2" required /></p>
+      <p>Nº de Anos: <input type="number" id="inAnos"required min="1" required/></p>
+      <input type="submit" value="Executar" />
+    </form>
+    <pre id="out"></pre>
+    <script>
+      const form = document.querySelector("form");
+      const out = document.querySelector("#out");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault()
+
+        const chinchilas = Number(form.inChinchilas.value)
+        const anos = Number(form.inAnos.value)
+
+        let resposta = ""
+        let totalChinchilas = chinchilas
+        for (let i = 1; i <= anos; i++) {
+            resposta += `${i}º ano: ${totalChinchilas} chinchilas.\n`
+            
+            totalChinchilas = totalChinchilas*3
+        }
+
+        out.innerText = resposta
+      });
+    </script>
+  </body>
+</html>

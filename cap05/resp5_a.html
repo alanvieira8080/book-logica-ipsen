@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="js/favicon.png" />
+    <title>Document</title>
+    <style>
+      img.normal {
+        float: left;
+        height: 300px;
+        width: 300px;
+      }
+      img.alta {
+        float: left;
+        height: 420px;
+        width: 300px;
+      }
+      h1 {
+        border-bottom-style: inset;
+      }
+      pre {
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="img/image.jpg" alt="Imagem de Ilustração" class="normal" />
+    <h1>Programa Repete Fruta</h1>
+    <form action="">
+      <p>Fruta: <input type="text" id="inFruta" required /></p>
+      <p>Número: <input type="number" id="inNumero" min="0" required /></p>
+      <input type="submit" value="Executar" />
+    </form>
+    <h3></h3>
+    <script>
+      const form = document.querySelector("form");
+      const out = document.querySelector("h3");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const fruta = form.inFruta.value;
+        const numero = form.inNumero.value;
+
+        let resposta = "";
+
+        for (let i = 1; i < numero; i++) {
+          resposta += fruta + " * ";
+        }
+
+        resposta += fruta;
+
+        out.innerText = resposta;
+      });
+    </script>
+  </body>
+</html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Supermercado JS</h1>
     <form action="">
@@ -14,6 +16,24 @@
     </form>
     <h2 id="outEtiqueta"></h2>
     <h2 id="outPreco"></h2>
-    <script src="js/ex2_c.js"></script>
+    <script>
+        const form = document.querySelector("form")
+        const outEtiqueta = document.querySelector("#outEtiqueta")
+        const outPreco = document.querySelector("#outPreco")
+
+        form.addEventListener("submit", (e) => {
+            const inProduto = form.inProduto.value
+            const inPreco = Number(form.inPreco.value)
+
+            valorTerceiroItem = inPreco * 0.5
+            valorPromocao = inPreco * 2 + valorTerceiroItem
+
+            outEtiqueta.innerText = `${inProduto} - Promoção: Leve 3 por R$ ${valorPromocao.toFixed(2)}`
+            outPreco.innerText = `O 3 produto custa apenas R$: ${valorTerceiroItem.toFixed(2)}`
+
+            e.preventDefault()
+        })
+    </script>
 </body>
+
 </html>

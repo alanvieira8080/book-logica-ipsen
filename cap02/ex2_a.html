@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Farmácia JS</h1>
     <form>
@@ -14,6 +16,23 @@
     </form>
     <h2></h2>
     <h3></h3>
-    <script src="js/ex2_a.js"></script>
+    <script>
+        const form = document.querySelector("form")
+        const resp1 = document.querySelector("h2")
+        const resp2 = document.querySelector("h3")
+
+        form.addEventListener("submit", (e) => {
+            const inMedicamento = form.inMedicamento.value
+            const inPreco = Number(form.inPreco.value)
+
+            const valorDescontado = inPreco - (inPreco - Math.floor(inPreco))
+
+            resp1.innerText = `Promoção de ${inMedicamento}`
+            resp2.innerText = `Leve 2 por apenas R$: ${valorDescontado}`
+
+            e.preventDefault()
+        })
+    </script>
 </body>
+
 </html>

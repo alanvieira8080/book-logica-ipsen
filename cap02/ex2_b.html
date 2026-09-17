@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Lan House JS</h1>
     <form action="">
@@ -13,6 +15,22 @@
         <input type="submit" value="Calcular Valor a Pagar">
     </form>
     <h2></h2>
-    <script src="js/ex2_b.js"></script>
+    <script>
+        const form = document.querySelector("form")
+        const out = document.querySelector("h2")
+
+        form.addEventListener("submit", (e) => {
+            const valor = Number(form.inValor.value)
+            const tempo = Number(form.inTempo.value)
+
+            tempoTotal = Math.ceil(tempo / 15)
+            valorTotal = tempoTotal * valor
+
+            out.innerText = `Valor a Pagar R$: ${valorTotal}`
+
+            e.preventDefault()
+        })
+    </script>
 </body>
+
 </html>

@@ -10,7 +10,7 @@ The `solutions/` folder contains the official solutions by the author, made avai
 
 Work in progress — not all chapters have been solved yet.
 
-![Book Cover](cover.jpeg)
+![Book Cover](assets/img-cover.jpeg)
 
 ## Structure
 

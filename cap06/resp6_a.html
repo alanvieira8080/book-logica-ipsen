@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="../assets/favicon-book.png" type="image/x-icon">
+    <style>
+        img.normal {
+            float: left;
+            width: 300px;
+            height: 300px;
+        }
+        img.alta {
+            float: left;
+            width: 300px;
+            height: 420px;
+        }
+        h1 {
+            border-bottom-style: inset;
+        }
+        pre {
+            font-size: 1.6em;
+        }
+        .font-azul {
+            color: blue;
+        }
+        .exibe {
+            display: inline;
+        }
+        .oculta {
+            display: none;
+        }
+        .italico {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../assets/img-exercise.jpg" alt="ilustração de Atividade" class="normal">
+    <h1>Jogos Eliminatórios</h1>
+    <form>
+        <p>Clube: 
+            <input type="text" id="inClub" required autofocus>
+            <input type="submit" value="Adicionar">
+        </p>
+        <input type="button" value="Listar Clubes" id="btnListClubs">
+        <input type="button" value="Tabela de Jogos" id="btnGameTable">
+    </form>
+    <pre></pre>
+    <script>
+        const form = document.querySelector("form")
+        const out = document.querySelector("pre")
+
+        let clubs = []
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const club = form.inClub.value
+
+            clubs.push(club)
+
+            form.reset()
+            form.inClub.focus()
+            form.btnListClubs.dispatchEvent(new Event("click"))
+        })
+
+        form.btnListClubs.addEventListener("click", () => {
+            if (clubs.length == 0) {
+                alert("Não há clubes para listar!")
+                return
+            }
+
+            let outMessage = ""
+
+            for (club of clubs) {
+                outMessage += `${club}\n`
+            }
+
+            out.innerText = outMessage
+        })
+
+        form.btnGameTable.addEventListener("click", () => {
+            if (clubs.length % 2 != 0) {
+                alert("O número de clubes não pode ser ímpar!")
+                return
+            }
+
+            let outMessage = ""
+
+            for (let i = 0; i < clubs.length/2; i++) {
+                outMessage += `${clubs[i]} vs. ${clubs[clubs.length - 1 - i]}\n`
+            }
+
+            out.innerText = outMessage
+        })
+    </script>
+</body>
+
+</html>

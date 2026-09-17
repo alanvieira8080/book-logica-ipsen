@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="favicon-book.png" type="image/x-icon">
+    <style>
+        img.normal {
+            float: left;
+            width: 300px;
+            height: 300px;
+        }
+        img.alta {
+            float: left;
+            width: 300px;
+            height: 420px;
+        }
+        h1 {
+            border-bottom-style: inset;
+        }
+        pre {
+            font-size: 1.6em;
+        }
+        .font-azul {
+            color: blue;
+        }
+        .exibe {
+            display: inline;
+        }
+        .oculta {
+            display: none;
+        }
+        .italico {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <img src="../assets/img-exercise.jpg" alt="Ilustração de Atividade" class="normal">
+    <h1>Programa Números em Ordem</h1>
+    <form>
+        <p>Número: 
+            <input type="number" id="inNumber" min="1" max="100" required autofocus>
+            <input type="submit" value="Adicionar">
+        </p>
+        <input type="button" value="Verificar Ordem" id="btnCheckOrder">
+    </form>
+    <h3 id="out1"></h3>
+    <h3 id="out2"></h3>
+    <script>
+        const form = document.querySelector("form")
+        const out1 = document.querySelector("#out1")
+        const out2 = document.querySelector("#out2")
+
+        const numbers = []
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const number = form.inNumber.value
+
+            numbers.push(number)
+
+            form.reset()
+            form.inNumber.focus()
+            form.btnCheckOrder.dispatchEvent(new Event("click"))
+        })
+
+        form.btnCheckOrder.addEventListener("click", () => {
+            if (numbers.length <= 1) {
+                form.inNumber.focus()
+                return
+            }
+
+            let orderly = true
+
+            for (let index = 0; index < numbers.length - 1; index++) {
+                const element = numbers[index];
+                if (numbers > numbers[index + 1]) {
+                    orderly = false
+                }
+            }
+
+            out1.innerText = "Números: " + numbers.join(", ")
+
+            if (orderly) {
+                out2.innerText = "Números estão em ordem crescente!"
+            } else {
+                out2.innerText = "Atenção... Números não estão em ordem crescente!"
+            }
+        })
+
+    </script>
+</body>
+</html>

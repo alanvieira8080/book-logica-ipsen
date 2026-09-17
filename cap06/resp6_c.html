@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="../assets/favicon-book.png" type="image/x-icon">
+    <style>
+        img.normal {
+            float: left;
+            width: 300px;
+            height: 300px;
+        }
+        img.alta {
+            float: left;
+            width: 300px;
+            height: 420px;
+        }
+        h1 {
+            border-bottom-style: inset;
+        }
+        pre {
+            font-size: 1.6em;
+        }
+        .font-azul {
+            color: blue;
+        }
+        .exibe {
+            display: inline;
+        }
+        .oculta {
+            display: none;
+        }
+        .italico {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <img src="../assets/img-exercise.jpg" alt="Ilustração de Atividade" class="normal">
+    <h1>Programa Concurso</h1>
+    <form>
+        <p>Candidato: <input type="text" id="inName" required autofocus></p>
+        <p>Acertos: 
+            <input type="number" id="inHits" min="0" required>
+            <input type="submit" value="Adicionar">
+        </p>
+        <input type="button" value="Listar Todos" id="btnListAll">
+        <input type="button" value="Aprovados 2 Fase" id="btnClassified">
+    </form>
+    <pre></pre>
+    <script>
+        const form = document.querySelector("form")
+        const out = document.querySelector("pre")
+
+        let students = []
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const name = form.inName.value
+            const hits = Number(form.inHits.value)
+
+            students.push({name, hits})
+
+            form.reset()
+            form.inName.focus()
+            form.btnListAll.dispatchEvent(new Event("click"))
+        })
+
+        form.btnListAll.addEventListener("click", (e) => {
+            if (students.length == 0) {
+                alert("Não há estudantes para serem listados!")
+                form.inStudents.focus()
+                return
+            }
+
+            let outMessage = ""
+
+            for (student of students) {
+                const {name, hits} = student
+                outMessage += `${name} – ${hits}\n`
+            }
+
+            out.innerText = outMessage
+        })
+
+        form.btnClassified.addEventListener("click", (e) => {
+            if (students.length == 0) {
+                alert("Não há estudantes para serem listados!")
+                form.inStudents.focus()
+                return
+            }
+
+            const cutOff = Number(prompt("Qual foi a nota de corte?"))
+
+            const classifieds = students.filter((student) => student.hits >= cutOff)
+
+            classifieds.sort((student1, student2) => student2.hits - student1.hits)
+
+            out.innerText = ""
+            classifieds.forEach((student) => {
+                out.innerText += `${student.name} - ${student.hits}\n`
+            })
+        })
+    </script>
+</body>
+</html>

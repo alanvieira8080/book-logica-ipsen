@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/favicon-book.png" type="image/x-icon">
+    <title>Document</title>
+    <style>
+        img {
+            float: left;
+            height: 300px;
+            width: 300px;
+        }
+        h1 {
+            border-bottom-style: inset;
+        }
+        .entre-letras {
+            letter-spacing: 0.5em;
+        }
+        .alinha-direita {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <img src="../assets/img-exercise.jpg" alt="Ilustração de Atividade">
+    <h1>Programa Frase Palíndromo</h1>
+    <form action="">
+        <p>Frase: <input type="text" id="inPhrase" required autofocus></p>
+        <input type="submit" value="Verificar">
+    </form>
+    <h3></h3>
+    <script>
+        const form = document.querySelector("form")
+        const out = document.querySelector("h3")
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const phrase = form.inPhrase.value.toUpperCase()
+            const auxPhrase = phrase.replace(/ /g, "")
+
+            const half = Math.floor(phrase.length / 2)
+
+            let palindromo = true
+
+            for (let i = 0; i < half; i++) {
+                if (auxPhrase[i] != auxPhrase[phrase.length - 1 - i]) {
+                    palindromo = false
+                }
+            }
+
+            const message = palindromo ? `${phrase} é um palíndromo.` : `${phrase} não é um palíndromo.`
+            out.innerText = message
+        })
+    </script>
+</body>
+</html>

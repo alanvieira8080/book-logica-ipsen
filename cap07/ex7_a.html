@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/favicon-book.png" type="image/x-icon">
+    <title>Document</title>
+    <style>
+        img {
+            float: left;
+            height: 300px;
+            width: 300px;
+        }
+        h1 {
+            border-bottom-style: inset;
+        }
+        .entre-letras {
+            letter-spacing: 0.5em;
+        }
+        .alinha-direita {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <img src="../assets/img-exercise.jpg" alt="Ilustração de Atividade">
+    <h1>Programa Criptografia</h1>
+    <form action="">
+        <p>Mensagem <input type="text" id="inMessage" required autofocus></p>
+        <input type="submit" value="Criptografar">
+        <input type="button" value="Descriptografar" id="btnDecripty">
+    </form>
+    <h3></h3>
+    <script>
+        const form = document.querySelector("form")
+        const out = document.querySelector("h3")
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            let message = form.inMessage.value
+            let messageEncriptyEven = ""
+            let messageEncriptyOdd = ""
+
+            ;[...message].forEach((letra, posicao) => {
+                if ((posicao + 1) % 2 == 0) {
+                    messageEncriptyEven += letra
+                } else {
+                    messageEncriptyOdd += letra
+                }
+             })
+
+             out.innerText = messageEncriptyEven + messageEncriptyOdd
+        })
+
+        form.btnDecripty.addEventListener("click", (e) => {
+            e.preventDefault()
+
+            let message = form.inMessage.value
+            let half = Math.floor(message.length / 2)
+            let messageDecripted = ""
+
+            for (let i = 0; i < half; i++) {
+                messageDecripted += message[i + half] + message[i]
+            }
+
+            messageDecripted += message.length % 2 != 0 ? message[length - 1] : ""
+
+            out.innerText = messageDecripted
+        })
+    </script>
+</body>
+</html>

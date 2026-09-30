@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="../assets/favicon-book.png" type="image/x-icon">
+    <style>
+        h1 {
+            border-bottom-style: inset;
+        }
+        pre {
+            font-size: 1.2em;
+        }
+        img.normal {
+            float: left;
+            width: 300px;
+            height: 300px;
+        }
+        img.alta {
+            float: left;
+            width: 300px;
+            height: 420px;
+        }
+        span {
+            margin-left: 70px;
+        }
+        select {
+            width: 150px;
+        }
+        .detalhes {
+            width: 380px;
+        }
+        .oculta {
+            display: none;
+        }
+        .exibe {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <img src="../assets/img-exercise.jpg" alt="Ilustração de Atividade" class="normal">
+    <h1>Veterinária Avenida</h1>
+    <form>
+        <p>Valor da Vacina (R$): <input type="number" min="0.00" step="0.01" id="inPrice" required autofocus></p>
+        <p>Convênio:
+            <input type="radio" name="agreement" id="rbtnYes">Sim
+            <input type="radio" name="agreement" id="rbtnNo">Não
+        </p>
+        <p id="agreementField" class="oculta">Tipo: 
+            <select id="inTypeAgreement">
+                <option value="animalFriendly">Amigo dos Animais</option>
+                <option value="animalHealth">Saúde Animal</option>
+            </select>
+        </p>
+        <input type="submit" value="Calcular">
+    </form>
+    <h3 id="out1"></h3>
+    <h3 id="out2"></h3>
+    <script>
+        const calculateDiscount = (value, discountPercentage) => value * ((100 - discountPercentage) / 100)
+
+        const form = document.querySelector("form")
+        const out1 = document.querySelector("#out1")
+        const out2 = document.querySelector("#out2")
+        const agreementField = document.querySelector("#agreementField")
+
+        form.rbtnYes.addEventListener("click", () => {
+            agreementField.className = "exibe"
+        })
+
+        form.rbtnNo.addEventListener("click", () => {
+            agreementField.className = "oculta"
+        })
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const price = form.inPrice.value
+
+            let finalPrice = 0
+            if (form.rbtnYes.checked) {
+                const typeAgreement = form.inTypeAgreement.selectedIndex
+
+                if (typeAgreement == 0) {
+                    finalPrice = calculateDiscount(price, 20)
+                } else {
+                    finalPrice = calculateDiscount(price, 50)
+                }
+            } else {
+                finalPrice = calculateDiscount(price, 10)
+            }
+
+            out1.innerText = `Desconto: R$ ${(price - finalPrice).toFixed(2)}`
+            out2.innerText = `A pagar: R$ ${finalPrice.toFixed(2)}`
+        })
+    </script>
+</body>
+</html>

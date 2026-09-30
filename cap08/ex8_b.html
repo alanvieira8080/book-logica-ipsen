@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="../assets/favicon-book.png" type="image/x-icon">
+    <style>
+        h1 {
+            border-bottom-style: inset;
+        }
+        pre {
+            font-size: 1.2em;
+        }
+        img.normal {
+            float: left;
+            width: 300px;
+            height: 300px;
+        }
+        img.alta {
+            float: left;
+            width: 300px;
+            height: 420px;
+        }
+        span {
+            margin-left: 70px;
+        }
+        select {
+            width: 150px;
+        }
+        .detalhes {
+            width: 380px;
+        }
+        .oculta {
+            display: none;
+        }
+        .exibe {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <img src="../assets/img-exercise.jpg" alt="Ilustração de Atividade" class="normal">
+    <h1>Programa Senha Inicial</h1>
+    <form action="">
+        <p>Nome: <input type="text" id="inName" required autofocus></p>
+        <input type="submit" value="Gerar">
+    </form>
+    <h3></h3>
+    <script>
+        const validateName = (name) => {
+            if (name.split(" ").length == 0) {
+                return false
+            } else {
+                return true
+            }
+        }
+
+        const getLastName = (name) => {
+            const separeteName = name.split(" ")
+            return separeteName.at(-1)
+        }
+
+        const countVowels = (name) => {
+            let count = 0
+            for (char of name) {
+                if (["a", "e", "i", "o", "u"].includes(char)) {
+                    count++
+                }
+            }
+
+            return count.toString().padStart(2, "0")
+        }
+
+        const form = document.querySelector("form")
+        const out = document.querySelector("h3")
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const name = form.inName.value
+
+            if (!validateName(name)) {
+                alert("Escreva um nome válido!")
+                form.inName.focus()
+                return
+            }
+
+            const lastName = getLastName(name)
+            const finalDigits = countVowels(name)
+
+            out.innerText = lastName + finalDigits
+        })
+    </script>
+</body>
+</html>

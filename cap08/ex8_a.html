@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="../assets/favicon-book.png" type="image/x-icon">
+    <style>
+        h1 {
+            border-bottom-style: inset;
+        }
+        pre {
+            font-size: 1.2em;
+        }
+        img.normal {
+            float: left;
+            width: 300px;
+            height: 300px;
+        }
+        img.alta {
+            float: left;
+            width: 300px;
+            height: 420px;
+        }
+        span {
+            margin-left: 70px;
+        }
+        select {
+            width: 150px;
+        }
+        .detalhes {
+            width: 380px;
+        }
+        .oculta {
+            display: none;
+        }
+        .exibe {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <img src="../assets/img-exercise.jpg" alt="Ilustração de Atividade" class="normal">
+    <h1>Clube de Natação</h1>
+    <form action="">
+        <p>Atleta: <input type="text" id="inName" required autofocus></p>
+        <p>Idade: <input type="number" min="0" max="90" id="inAge" required></p>
+        <input type="submit" value="Categorize">
+    </form>
+    <pre></pre>
+    <script>
+        function returnSymbols(name) {
+            let string = ""
+            for (char of name) {
+                string += char != " " ? "-" : " "
+            }
+            return string
+        }
+
+        function categorizeAthlete(age) {
+            let category
+            if (age <= 12) {
+                category = "Infatil"
+            } else if (age < 18) {
+                category = "Juvenil"
+            } else {
+                category = "Adulto"
+            }
+            return category
+        }
+
+        const form = document.querySelector("form")
+        const out = document.querySelector("pre")
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const name = form.inName.value
+            const age = form.inAge.value
+            const symbols = returnSymbols(name)
+            const category = categorizeAthlete(age)
+
+            out.innerText = `${name}\n${symbols}\nCategoria: ${category}`
+        })
+    </script>
+</body>
+</html>

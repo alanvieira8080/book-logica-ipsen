@@ -8,10 +8,6 @@ The solutions are organized by chapter, following the format suggested by the au
 
 The `solutions/` folder contains the official solutions by the author, made available by the publisher.
 
-Work in progress — not all chapters have been solved yet.
-
-![Book Cover](assets/img-cover.jpeg)
-
 ## Structure
 
 ```

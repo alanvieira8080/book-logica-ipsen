@@ -6,8 +6,6 @@ This repository contains the solutions to Iepsen's logic and programming algorit
 
 The solutions are organized by chapter, following the format suggested by the author.
 
-The `solutions/` folder contains the official solutions by the author, made available by the publisher.
-
 ## Structure
 
 ```

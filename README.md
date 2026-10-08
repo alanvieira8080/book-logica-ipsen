@@ -2,28 +2,33 @@
 
 ## Introduction
 
-This repository contains the solutions to Iepsen's logic and programming algorithms book.
+Solutions to the exercises of Iepsen's book on programming logic and algorithms with JavaScript.
 
-The solutions are organized by chapter, following the format suggested by the author.
+Each solution is a standalone HTML file with inline JavaScript. No installation or dependencies required.
 
 ## Structure
 
 ```
-├── cap01/
-├── cap02/
-├── cap03/
-├── cap04/
-├── solutions/
+├── ch01/
+├── ch02/
+├── ch04/
+├── ch05/
+├── ch06/
+├── ch07/
+├── ch08/
+├── ch09/
 ├── .gitignore
-├── cover.jpeg
-├── package.json
-├── package-lock.json
+├── favicon.png
+├── exercise.jpg
+├── TODO.md
 └── README.md
-````
+```
+
+Chapter folders contain files named `answer_<chapter>_<letter>.html`, e.g. `ch01/answer_1_a.html`.
 
 ## Usage
 
-Go to the desired chapter folder to see the solutions for the corresponding exercises.
+Open the desired `answer_*.html` file in a web browser.
 
 ## Reference
 

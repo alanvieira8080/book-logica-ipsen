@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="../favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        pre {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="../img-exercise.jpg" alt="Ilustração de Exercício" class="img-fluid">
+            </div>
+            <div class="col-sm-8">
+                <h1>Herbie: Controle de Serviços</h1>
+                <form>
+                    <div class="mb-3">
+                        <label for="inService">Serviço:</label>
+                        <input type="text" id="inService" class="form-control" required autofocus>
+                    </div>
+                    <input type="submit" value="Adicionar" class="btn btn-primary">
+                    <input type="button" value="Executar" id="btnExecution" class="btn btn-success">
+                </form>
+                <h3>Serviços Pendentes: <span id="outPending"></span></h3>
+                <h3>Serviços em Execução:</h3>
+                <pre></pre>
+            </div>
+        </div>
+    </div>
+    <script>
+        const form = document.querySelector("form")
+        const outPending = document.querySelector("#outPending")
+        const outServices = document.querySelector("pre")
+
+        const readServices = () => {
+            const services = localStorage.getItem("services")
+            return services ? services.split(";") : []
+        }
+
+        const saveServices = (services) => {
+            localStorage.setItem("services", services.join(";"))
+        }
+
+        window.addEventListener("load", () => {
+            outPending.textContent = readServices().length
+            outServices.textContent = localStorage.getItem("inExecution") ? localStorage.getItem("inExecution") : ""
+        })
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const services = readServices()
+            services.push(form.inService.value)
+            saveServices(services)
+
+            outPending.textContent = readServices().length
+            form.inService.value = ""
+            form.inService.focus()
+        })
+
+        form.btnExecution.addEventListener("click", () => {
+            const services = readServices()
+            const removed = services.length ? services.shift() : ""
+            saveServices(services)
+
+            localStorage.setItem("inExecution", removed)
+
+            outPending.textContent = readServices().length
+            outServices.textContent = removed
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

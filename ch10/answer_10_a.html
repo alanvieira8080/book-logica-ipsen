@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="../favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        h1 {
+            border-bottom-style: inset;
+        }
+        .tarefa-selecionada {
+            color: red;
+            font-style: italic;
+        }
+        .tarefa-normal {
+            color: black;
+        }
+        img.moeda1-00 {
+            height: 84px;
+            width: 84px;
+            margin-bottom: 5px;
+        }
+        img.moeda0-50 {
+            height: 66px;
+            width: 66px;
+            margin-bottom: 5px;
+        }
+        img.moeda0-25 {
+            height: 76px;
+            width: 76px;
+            margin-bottom: 5px;
+        }
+        img.moeda0-10 {
+            height: 60px;
+            width: 60px;
+            margin-bottom: 5px;
+        }
+        .exclui {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="../exercise.jpg" alt="Exercício" class="img-fluid">
+            </div>
+            <div class="col-sm-8">
+                <h1>Velas de Aniversário</h1>
+                <form>
+                    <label for="inAge">Idade:</label>
+                    <input type="number" class="form-control" id="inAge" min="1" max="120" required autofocus>
+                    <div class="mt-3 mb-3">
+                        <input type="submit" class="btn btn-primary" id="btnShow" value="Exibir Velas">
+                        <input type="reset" class="btn btn-danger" value="Novas Velas">
+                    </div>
+                    <div id="container-img"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        const form = document.querySelector("form")
+        const container_img = document.querySelector("#container-img")
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const age = form.inAge.value
+
+            for (number of age) {
+                const image = document.createElement("img")
+                image.src = `../${number}.jpg`
+                image.alt = `Number ${number}`
+                container_img.appendChild(image)
+            }
+
+            form.btnShow.disabled = true
+        })
+
+        form.addEventListener("reset", () => {
+            window.location.reload()
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
